@@ -20,7 +20,7 @@ namespace MVC5Course.Controllers
             var clients = db.Clients.Include(c => c.Occupation);
             //clients = db.Clients.OrderByDescending(c => c.ClientId).Take(10).ToList();
 
-            return View(db.Clients.OrderByDescending(c => c.ClientId).Take(10).ToList());
+            return View(db.Clients.OrderByDescending(p => p.ClientId).Take(10).ToList());
             //return View(db.Products.OrderByDescending(p => p.ProductId).Take(10).ToList());
             //return View(clients.ToList());
         }
