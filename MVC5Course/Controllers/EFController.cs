@@ -34,6 +34,20 @@ namespace MVC5Course.Controllers
         public ActionResult Delete(int id)
         {
             var product = db.Products.Find(id);
+            // db.OrderLine.Where(p => p.ProductId == id)
+            // product.OrderLine
+
+            // 錯誤示範 (以下範例不要抄)
+            /*
+            foreach (var item in product.OrderLine.ToList())
+            {
+                db.OrderLine.Remove(item);
+                db.SaveChanges();
+            }
+            */
+
+            db.OrderLines.RemoveRange(product.OrderLines); // remove 關聯
+
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
