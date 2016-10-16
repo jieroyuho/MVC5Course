@@ -1,6 +1,7 @@
 ﻿using MVC5Course.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -61,7 +62,22 @@ namespace MVC5Course.Controllers
         {
             var product = db.Products.Find(id);
             product.ProductName += "!";
-            db.SaveChanges();
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbEntityValidationException ex)
+            {
+                foreach (var entityErrors in ex.EntityValidationErrors)
+                {
+                    foreach (var vError in entityErrors.ValidationErrors)
+                    {
+                        throw new DbEntityValidationException(vError.PropertyName + "發生錯誤" + vError.ErrorMessage);
+                    }
+                }
+            }
+
             return RedirectToAction("Index");
         }
         public ActionResult Update20()
