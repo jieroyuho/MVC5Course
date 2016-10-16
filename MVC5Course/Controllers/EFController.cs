@@ -1,4 +1,5 @@
 ﻿using MVC5Course.Models;
+using MVC5Course.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -82,14 +83,17 @@ namespace MVC5Course.Controllers
         }
         public ActionResult Update20()
         {
-            var db = new FabricsEntities();
-            var data = db.Products.Where(p => p.ProductName.Contains("White"));
-            foreach (var item in data)
-            {
-                if (item.Price.HasValue)
-                    item.Price = item.Price.Value * 1.2m;
-            }
-            db.SaveChanges();
+            var str = "%White%";
+            db.Database.ExecuteSqlCommand("UPDATE dbo.Product SET Price=Price*1.2 WHERE ProductName LIKE @p0", str);
+            //db.Database.ExecuteSqlCommand("UPDATE dbo.Product SET Price=Price*1.2 WHERE ProductName LIKE @p0", str);
+            //var db = new FabricsEntities();
+            //var data = db.Products.Where(p => p.ProductName.Contains("White"));
+            //foreach (var item in data)
+            //{
+            //    if (item.Price.HasValue)
+            //        item.Price = item.Price.Value * 1.2m;
+            //}
+            //db.SaveChanges(); 
 
             return RedirectToAction("Index");
         }
@@ -98,5 +102,29 @@ namespace MVC5Course.Controllers
             var data = db.vw_ClientContribution.Take(10);
             return View(data);
         }
+        public ActionResult ClientContribution2(string keyword = "Mary")
+        {
+            var data = db.Database.SqlQuery<ClientContributionViewModel>(@"
+            	SELECT
+                c.ClientId,
+		        c.FirstName,
+		        c.LastName,
+		        (SELECT SUM(o.OrderTotal) 
+		            FROM [dbo].[Order] o 
+		            WHERE o.ClientId = c.ClientId) as OrderTotal
+	            FROM 
+		        [dbo].[Client] as c
+                WHERE c.FirstName LIKE @p0", "%" + keyword + "%");
+
+            return View(data);
+        }
+        public ActionResult ClientContribution3(string keyword = "Mary")
+        {
+            var data = db.usp_GetClientContribution(keyword);
+            return View(data);
+        }
+
+
+
     }
 }
