@@ -9,9 +9,9 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class EFController : Controller
+    public class EFController : BaseController
     {
-        FabricsEntities db = new FabricsEntities(); //在Class下不能使用var
+        //FabricsEntities db = new FabricsEntities(); //在Class下不能使用var
         // GET: EF
         public ActionResult Index()
         {
