@@ -7,8 +7,10 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
+    [LocalDebugOnly]
     public class MBCController : BaseController
     {
+        [ShareData]
         // GET: MBC
         public ActionResult Index()
         {
@@ -26,7 +28,7 @@ namespace MVC5Course.Controllers
 
             return View();
         }
-
+        [ShareData]
         public ActionResult MyForm()
         {
             return View();
