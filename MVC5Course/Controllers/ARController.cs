@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace MVC5Course.Controllers
 {
-    public class ARController : Controller
+    public class ARController : BaseController
     {
         // GET: AR
         public ActionResult Index()
@@ -44,6 +44,12 @@ namespace MVC5Course.Controllers
             var filePath = Server.MapPath("~/Content/mvc.jpg");
 
             return File(filePath, "image/jpeg", "mvc.jpg");
+        }
+        public ActionResult JasonTest()
+        {
+            db.Configuration.LazyLoadingEnabled = false; //會有循環參考的問題，所以才加入此行
+            var data = db.Products.OrderBy(p => p.ProductId).Take(10);
+            return Json(data,JsonRequestBehavior.AllowGet); // 會有GET 封鎖的問題，所以才加入此行
         }
 
 
