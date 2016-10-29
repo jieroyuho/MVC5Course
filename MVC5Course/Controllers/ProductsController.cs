@@ -20,9 +20,9 @@ namespace MVC5Course.Controllers
         {
             //var repo = new ProductRepository();
             //repo.UnitOfWork = new EFUnitOfWork();
-            var repo = RepositoryHelper.GetProductRepository();
-            var data = repo.All().OrderByDescending(p => p.ProductId).Take(10).ToList();
-            //return View(db.Products.ToList());
+            //var repo = RepositoryHelper.GetProductRepository();
+            //var data = repo.All().OrderByDescending(p => p.ProductId).Take(10).ToList();
+            var data = repo.GetAllData_with_Head(10).ToList();
             return View(data);
         }
 
@@ -124,8 +124,10 @@ namespace MVC5Course.Controllers
             //Product product = db.Products.Find(id);
             Product product = repo.Find(id);
             //db.Products.Remove(product);
-            product.IsDeleted = true;
-            db.SaveChanges();
+            //product.IsDeleted = true;
+            repo.Delete(product);
+            repo.UnitOfWork.Commit();
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
