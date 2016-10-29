@@ -278,6 +278,7 @@
     </Compile>
     <Compile Include="Models\ViewModels\ClientContributionViewModel.cs" />
     <Compile Include="Models\ViewModels\ClientLoginViewModel.cs" />
+    <Compile Include="Models\ViewModels\ProductBatchUpdateViewModel.cs" />
     <Compile Include="Models\vw_ClientContribution.cs">
       <DependentUpon>Fabric.tt</DependentUpon>
     </Compile>
@@ -399,6 +400,7 @@
     <Content Include="Views\MBC\Index.cshtml" />
     <Content Include="Views\MBC\MyFormResult.cshtml" />
     <Content Include="Views\MBC\MyForm.cshtml" />
+    <Content Include="Views\MBC\ProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
