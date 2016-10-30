@@ -83,6 +83,11 @@ namespace MVC5Course.Controllers
             return View();
         }
 
+        public ActionResult MyError()
+        {
+            throw new InvalidOperationException("ERROR");
+            return View();
+        }
 
 
     }
