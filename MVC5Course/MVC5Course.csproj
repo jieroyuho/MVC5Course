@@ -403,6 +403,7 @@
     <Content Include="Views\MBC\MyFormResult.cshtml" />
     <Content Include="Views\MBC\MyForm.cshtml" />
     <Content Include="Views\MBC\ProductList.cshtml" />
+    <Content Include="Views\Shared\Error_DbEntityValidationException.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
