@@ -8,6 +8,7 @@ namespace MVC5Course.Models.ViewModels
 {
     public class ProductBatchUpdateViewModel //: IValidatableObject
         //在ViewModle下的驗證只會發生在Model Binding時，本範例只會在DBSaving時發生，所以可以拿掉此驗證方法
+        //Model Binding不會有例外。只會丟ModelState
     {
         public int ProductId { get; set; }
         [Required]

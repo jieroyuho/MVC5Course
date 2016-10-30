@@ -66,7 +66,7 @@ namespace MVC5Course.Controllers
              * items[0].ProductId
              * items[1].ProductId
              */
-            if (ModelState.IsValid) //拿掉會影響ModelBind的驗證
+            if (ModelState.IsValid) //拿掉會影響ModelBind的狀態，Model Bind不會丟例外，只會影響State
             {
                 foreach (var item in items)
                 {

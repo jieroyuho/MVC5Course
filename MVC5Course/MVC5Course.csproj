@@ -184,6 +184,7 @@
     <Compile Include="Controllers\MBCController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="ActionFilter\ShareDataAttribute.cs" />
+    <Compile Include="Controllers\VTController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -404,6 +405,7 @@
     <Content Include="Views\MBC\MyForm.cshtml" />
     <Content Include="Views\MBC\ProductList.cshtml" />
     <Content Include="Views\Shared\Error_DbEntityValidationException.cshtml" />
+    <Content Include="Views\VT\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
